@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Test API</title>
+
+</head>
+<body>
+   
+<script>
+
+ var resultArray = [];
+
+//generate the random letters
+  var text = "";
+  var possible = "abcdefghijklmnopqrstuvwxyz";
+
+  for (var i = 0; i < 5; i++)
+    text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+
+//document.write(text);
+
+//testing.
+
+const JSONTest = {"anagrams": ["snail", "sailn"]}
+
+document.write(JSONTest.anagrams[0]);
+document.write(JSONTest.anagrams[1]);
+
+
+//make a call to the API
+
+// Create a request variable and assign a new XMLHttpRequest object to it.
+var request = new XMLHttpRequest()
+
+// Open a new connection, using the GET request on the URL endpoint
+request.open('GET', 'https://cors-anywhere.herokuapp.com/http://www.anagramica.com/best/:' + text, true)
+request.onload= () =>
+{
+   
+     const result = JSON.parse(request.response);
+     console.log(result);
+     resultArray =  result.best;
+
+document.write(resultArray[0]);
+document.write(resultArray.length);
+document.write(JSONTest.anagrams.length);
+}
+
+request.send();
+
+
+
+
+
+
+
+
+</script>
+
+
+
+</body>
+</html>
+
